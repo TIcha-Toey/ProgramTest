@@ -10,7 +10,6 @@
 
     <script type="text/javascript">
     function getinput(){
-    
     var inputtext = document.getElementById("licheck").value;
     var nameArr = inputtext.split(',');
     var chk = document.getElementById("Searchbox").value;
@@ -24,12 +23,10 @@
                 break ;
             }else{
                  text += "Round : [" +[i+1]+"] ===> " + chk +" != "+arr[i]+"\n";
-            }   
+            }  
     }
-
-    document.getElementById("result").value =  text;
-        
-    }
+        document.getElementById("result").value = "List : ["+ inputtext +"]\nSearch : "+ chk +"\nResult ::: \n"+text;
+        }
     if(searchs === 'binary'){
         function binarySearch(arr, target) {
         let left = 0;
@@ -46,7 +43,9 @@
         }
     }
     return -1;
-}
+} document.getElementById("result").value = "List : ["+ inputtext +"]\nSearch : "+ chk +"\nResult ::: \n"+(binarySearch(nameArr));
+    
+
     }
     if(searchs === 'bubble'){
         function swap(arr, first_Index, second_Index){
@@ -59,19 +58,18 @@ function bubble_Sort(arr){
 
     var len = arr.length,
         i, j, stop;
-
+    var test = "";
     for (i=0; i < len; i++){
         for (j=0, stop=len-i; j < stop; j++){
             if (arr[j] > arr[j+1]){
                 swap(arr, j, j+1);
-            }
+            } 
         }
     }
-
     return arr;
 }
-console.log(bubble_Sort(nameArr));
-document.getElementById("result").value =  (bubble_Sort(nameArr));
+
+document.getElementById("result").value = "List : ["+ inputtext +"]\nSearch : "+ chk +"\nResult ::: \n"+(bubble_Sort(nameArr));
     }
 }
 
@@ -105,6 +103,9 @@ document.getElementById("result").value =  (bubble_Sort(nameArr));
     }
     #op{
         text-align: center;
+    }
+    textarea { 
+    text-align: center 
     }
     
 </style>
@@ -140,7 +141,7 @@ document.getElementById("result").value =  (bubble_Sort(nameArr));
           <td></td><td ><b>ผลลัพธ์</b></td>
        </tr>
        <tr>
-       <td colspan="2"><textarea id=result rows="10" cols="40"></textarea></textarea>
+       <td colspan="2"><textarea id=result rows="10" cols="40"> </textarea>
        </tr>
         </table>
     </div>
