@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Document</title>
+     
+</head>
+
+    <script type="text/javascript">
+    function getinput(){
+    
+    var inputtext = document.getElementById("licheck").value;
+    var nameArr = inputtext.split(',');
+    var chk = document.getElementById("Searchbox").value;
+    var searchs = document.getElementById("listbox").value;
+        var arr = nameArr;
+        var text = "";
+        if(searchs === 'linear'){
+            for(i=0; i<arr.length; i++){
+            if(arr[i] === chk ){
+                text += "Round : [" +[i+1]+"] ===> "+ chk +" = "+arr[i]+" found!!!";
+                break ;
+            }else{
+                 text += "Round : [" +[i+1]+"] ===> " + chk +" != "+arr[i]+"\n";
+            }   
+    }
+
+    document.getElementById("result").value =  text;
+        
+    }
+    if(searchs === 'binary'){
+        function binarySearch(arr, target) {
+        let left = 0;
+        let right = arr.length - 1;
+    while (left <= right) {
+        const mid = left + Math.floor((right - left) / 2);
+        if (arr[mid] === target) {
+            return mid;
+        }
+        if (arr[mid] < target) {
+            left = mid + 1;
+        } else {
+            right = mid - 1;
+        }
+    }
+    return -1;
+}
+    }
+    if(searchs === 'bubble'){
+        function swap(arr, first_Index, second_Index){
+    var temp = arr[first_Index];
+    arr[first_Index] = arr[second_Index];
+    arr[second_Index] = temp;
+}
+
+function bubble_Sort(arr){
+
+    var len = arr.length,
+        i, j, stop;
+
+    for (i=0; i < len; i++){
+        for (j=0, stop=len-i; j < stop; j++){
+            if (arr[j] > arr[j+1]){
+                swap(arr, j, j+1);
+            }
+        }
+    }
+
+    return arr;
+}
+console.log(bubble_Sort(nameArr));
+document.getElementById("result").value =  (bubble_Sort(nameArr));
+    }
+}
+
+       
+        
+</script>
+
+<style>
+    .b{
+        padding-top: 15px;
+        padding-left: 20px;
+        padding-bottom: 15px;
+        border: 1px black solid;
+        width: 400px
+
+    }
+    #list{
+        width: 300px;
+    }
+    #Searchbox{
+        width: 100px;
+    }
+    #listbox{
+        width: 200px;
+    }
+    #Search{
+        background-color: orange;
+    }
+    #comment{
+        margin-left: 48px;
+    }
+    #op{
+        text-align: center;
+    }
+    
+</style>
+<body>
+    <div class="b">
+    
+        <table cellpadding="7">
+            <tr> 
+                <th>List  </th>
+                <td> <input type="text" id="licheck" name="listbox"></td>
+            </tr>
+            <tr> 
+                <th> ค้นหา </th>
+                <td>  <input type="text" id="Searchbox" > 
+                      <button type="button" id="Search"  onclick="getinput()" ><font color="white">ค้นหา</font></button> 
+                </td>
+            </tr>
+            
+            <tr>
+                <td></td><th><center>ประเภทการค้นหา</center></th>
+            </tr>
+            <tr>
+                <td></td> 
+                <td align="center"> 
+                    <select id="listbox" name="listsearch" >
+                        <option  value="linear">1. Linear Search</option>
+                        <option  value="binary">2. Binary Search</option>
+                        <option  value="bubble">3. Bubble Search</option>
+                     </select> 
+                </td>
+            </tr>
+        <tr>
+          <td></td><td ><b>ผลลัพธ์</b></td>
+       </tr>
+       <tr>
+       <td colspan="2"><textarea id=result rows="10" cols="40"></textarea></textarea>
+       </tr>
+        </table>
+    </div>
+</html>
